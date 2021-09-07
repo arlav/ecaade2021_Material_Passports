@@ -4,8 +4,11 @@ pragma solidity ^0.6.2;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.1.0/contracts/access/Ownable.sol";
 
+// @dev: This creates a  simple struct to map three integers as ids of materials, processes, and outputs encapsulating material passports.
+// @user: it takes into account ids passed on from Blender/Topologic as dictionaries belonging to lists.
+
 contract Mat_passport is Ownable{
-   struct MaterialID { 
+   struct MaterialID {
       uint inputID;
       uint processID;
       uint outputID;
@@ -18,11 +21,11 @@ contract Mat_passport is Ownable{
    function getInputID() public view returns (uint) {
       return materialID.inputID;
    }
-   
+
    function getOutputID() public view returns (uint) {
       return materialID.outputID;
    }
-   
+
    function getProcessID() public view returns (uint) {
       return materialID.processID;
    }

@@ -4,6 +4,11 @@ pragma solidity ^0.6.2;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.1.0/contracts/access/Ownable.sol";
 
+
+// @dev: This creates a  simple struct to map three integers as ids of materials, processes, and outputs encapsulating material passports.
+// @user: it takes into account ids passed on from Blender/Topologic as dictionaries belonging to lists.
+// @user: it also adds the first state of a supply chain for tracking a material through its stages-
+// @dev: to be added- reference and a mapping of the material to an address, to show onwership through the supply chain.
 contract Mat_passport is Ownable{
    struct MaterialID {
       //maybe the address of the previous contract // string prevContract;
@@ -11,7 +16,7 @@ contract Mat_passport is Ownable{
       uint processID;
       uint outputID;
    }
-   
+
    enum Status {
         Pending,
         Shipped,
@@ -53,18 +58,18 @@ contract Mat_passport is Ownable{
    function setMaterialID(uint _inputID, uint _processID, uint _outputID ) public {
       materialID = MaterialID(_inputID, _processID, _outputID);
    }
-   
+
    //Get the ID of the input to the fabrication process
    function getInputID() public view returns (uint) {
       return materialID.inputID;
    }
-   
+
    //Get the ID of the output product of the tranformation
    function getOutputID() public view returns (uint) {
       return materialID.outputID;
    }
-   
-   //Get the ID of the process used in the transformation of the input into the output 
+
+   //Get the ID of the process used in the transformation of the input into the output
    function getProcessID() public view returns (uint) {
       return materialID.processID;
    }

@@ -17,6 +17,7 @@ contract Mat_passport is Ownable{
       uint outputID;
    }
 
+//Enum is used to track status on the supply chain - expand here with more supply chain events to frontend- 
    enum Status {
         Pending,
         Shipped,

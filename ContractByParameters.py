@@ -96,6 +96,7 @@ def transposeList(l):
 	return returnList
 
 def processItem(item, data):
+	#this is the common web3.py part that will work across software (blender, dynamo, grasshopper)
     contract_address, contract_abi, wallet_address, wallet_private_key, infura_url = item
 
     w3 = Web3(HTTPProvider(infura_url))
@@ -104,7 +105,7 @@ def processItem(item, data):
 
     receipts = []
 
-    #the next function calls mints the NFT
+    #the next function calls a corresponding function on the smart contract, in this case a material ID.
     nonce = w3.eth.get_transaction_count(wallet_address)
     tx_dict = smartContract.functions.setMaterialID(data[0], data[1], data[2]).buildTransaction({
         'chainId' : 4,
